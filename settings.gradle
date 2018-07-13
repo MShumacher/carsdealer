@@ -1,0 +1,2 @@
+rootProject.name = 'carsdealer'
+include 'dao', 'orm', 'service', 'web'
