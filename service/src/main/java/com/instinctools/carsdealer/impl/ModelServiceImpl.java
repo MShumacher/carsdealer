@@ -1,4 +1,4 @@
-package com.instinctools.carsdealer.Impl;
+package com.instinctools.carsdealer.impl;
 
 import com.instinctools.carsdealer.IModelService;
 import com.instinctools.carsdealer.dao.IModel;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class ModelServiceImpl implements IModelService {
@@ -18,9 +17,6 @@ public class ModelServiceImpl implements IModelService {
 
     @Autowired
     private IModelDao dao;
-
-    @Autowired
-    private IModelService thisService;
 
     @Override
     public IModel createEntity() {

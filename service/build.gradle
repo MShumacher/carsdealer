@@ -1,16 +1,3 @@
-plugins {
-    id 'java'
-}
-
-group 'com.instinctools'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     // https://mvnrepository.com/artifact/org.springframework/spring-test
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.0.7.RELEASE'
@@ -20,5 +7,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // https://mvnrepository.com/artifact/javax.transaction/javax.transaction-api
     compile group: 'javax.transaction', name: 'javax.transaction-api', version: '1.3'
+
+
     compile project(":dao-orm")
 }

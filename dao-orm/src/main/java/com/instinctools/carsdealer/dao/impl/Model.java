@@ -1,6 +1,5 @@
 package com.instinctools.carsdealer.dao.impl;
 
-import com.instinctools.carsdealer.dao.ICarParameter;
 import com.instinctools.carsdealer.dao.IModel;
 
 import javax.persistence.Column;
@@ -14,9 +13,6 @@ public class Model extends BaseEntity implements IModel {
 
     @Column
     private String brand;
-
-    @Column
-    private String gearbox;
 
     @Override
     public String getName() {
@@ -44,7 +40,6 @@ public class Model extends BaseEntity implements IModel {
                 "id='" + getId() + '\'' +
                 ", name='" + name + '\'' +
                 ", brandName='" + brand + '\'' +
-                ", gearbox='" + gearbox + '\'' +
                 '}';
     }
 }

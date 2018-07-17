@@ -1,12 +1,18 @@
 package com.instinctools.carsdealer;
 
 import com.instinctools.carsdealer.dao.IModel;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class ModelServiceTest extends AbstractTest {
+
+    @Before
+    public void cleanTables() {
+        getModelService().deleteAll();
+    }
 
     @Test
     public void testCreate() {

@@ -1,12 +1,10 @@
-package com.instinctools.carsdealer.orm.Impl;
+package com.instinctools.carsdealer.orm.impl;
 
 import com.instinctools.carsdealer.orm.IBaseDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
-import javax.persistence.criteria.CriteriaQuery;
-import java.util.List;
 
 public abstract class AbstractDaoImpl<T, ID> implements IBaseDao<T, ID> {
 

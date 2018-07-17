@@ -1,19 +1,17 @@
-plugins {
-    id 'java'
-    id 'application'
-}
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    group 'com.instinctools'
+    version '1.0-SNAPSHOT'
 
-group 'com.instinctools'
-version '1.0-SNAPSHOT'
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    repositories {
+        mavenCentral()
+    }
 }
 
 task wrapper(type: Wrapper) {

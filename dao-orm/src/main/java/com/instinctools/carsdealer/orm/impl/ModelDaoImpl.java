@@ -1,4 +1,4 @@
-package com.instinctools.carsdealer.orm.Impl;
+package com.instinctools.carsdealer.orm.impl;
 
 import com.instinctools.carsdealer.dao.IModel;
 import com.instinctools.carsdealer.dao.impl.Model;
