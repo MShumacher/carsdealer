@@ -20,5 +20,5 @@ public interface IBaseDao<ENTITY, ID> {
 
 //    ENTITY getFullInfo(ID id);
 
-//    List<ENTITY> getAllFullInfo();
+    List<ENTITY> getAllFullInfo();
 }

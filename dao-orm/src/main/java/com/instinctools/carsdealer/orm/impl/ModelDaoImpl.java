@@ -5,6 +5,14 @@ import com.instinctools.carsdealer.dao.impl.Model;
 import com.instinctools.carsdealer.orm.IModelDao;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Root;
+import java.util.List;
+
 
 @Repository
 public class ModelDaoImpl extends AbstractDaoImpl<IModel, Integer> implements IModelDao {
@@ -19,6 +27,21 @@ public class ModelDaoImpl extends AbstractDaoImpl<IModel, Integer> implements IM
         return Model;
     }
 
+    @Override
+    public List<IModel> getAllFullInfo() {
+        final EntityManager em = getEntityManager();
+        final CriteriaBuilder cb = em.getCriteriaBuilder();
+        final CriteriaQuery<IModel> cq = cb.createQuery(IModel.class);
+        final Root<Model> from = cq.from(Model.class);
+        cq.select(from);
+
+//        from.fetch(Model_.userAccount, JoinType.LEFT);
+//        from.fetch(Model_.room, JoinType.LEFT);
+//        from.fetch(Model_.ModelStatus, JoinType.LEFT);
+
+        final TypedQuery<IModel> q = em.createQuery(cq);
+        return q.getResultList();
+    }
 //    @Override
 //    public long getCount(final ModelFilter filter) {
 //        final EntityManager em = getEntityManager();

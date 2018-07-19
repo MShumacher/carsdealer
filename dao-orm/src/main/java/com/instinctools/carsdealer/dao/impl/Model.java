@@ -39,7 +39,7 @@ public class Model extends BaseEntity implements IModel {
         return "Model{" +
                 "id='" + getId() + '\'' +
                 ", name='" + name + '\'' +
-                ", brandName='" + brand + '\'' +
+                ", brand='" + brand + '\'' +
                 '}';
     }
 }

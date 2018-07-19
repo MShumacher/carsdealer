@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface IModelService {
 
+        IModel createEntity();
+
         IModel get(Integer id);
 
 //        List<IModel> getAll();
@@ -20,7 +22,7 @@ public interface IModelService {
         @Transactional
         void deleteAll();
 
-        IModel createEntity();
+
 
 //        List<IModel> find(ModelFilter filter);
 //

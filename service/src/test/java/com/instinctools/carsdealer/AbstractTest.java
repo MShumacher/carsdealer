@@ -17,8 +17,8 @@ import java.util.Random;
 
         private static final Random RANDOM = new Random();
 
-        protected String getRandomPrefix() {
-            return RANDOM.nextInt(99999) + "";
+        protected int getRandomPrefix() {
+            return RANDOM.nextInt(99999);
         }
 
         protected int getRandomObjectsCount() {
