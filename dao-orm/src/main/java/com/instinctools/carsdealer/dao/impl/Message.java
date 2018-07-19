@@ -16,13 +16,13 @@ public class Message extends BaseEntity implements IMessage {
     private String message;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
-    private IUserAccount senderId;
+    private IUserAccount sender;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
-    private IUserAccount recipientId;
+    private IUserAccount recipient;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Ad.class)
-    private IAd adId;
+    private IAd ad;
 
     @Column
     private boolean viewed;
@@ -38,31 +38,31 @@ public class Message extends BaseEntity implements IMessage {
     }
 
     @Override
-    public IUserAccount getSenderId() {
-        return senderId;
+    public IUserAccount getSender() {
+        return sender;
     }
 
     @Override
-    public void setSenderId(IUserAccount senderId) {
-        this.senderId = senderId;
+    public void setSender(IUserAccount sender) {
+        this.sender = sender;
     }
 
     @Override
-    public IUserAccount getRecipientId() {
-        return recipientId;
+    public IUserAccount getRecipient() {
+        return recipient;
     }
 
     @Override
-    public void setRecipientId(IUserAccount recipientId) {
-        this.recipientId = recipientId;
+    public void setRecipient(IUserAccount recipient) {
+        this.recipient = recipient;
     }
 
     @Override
-    public IAd getAdId() { return adId; }
+    public IAd getAd() { return ad; }
 
     @Override
-    public void setAdId(IAd adId) {
-        this.adId = adId;
+    public void setAd(IAd ad) {
+        this.ad = ad;
     }
 
     @Override
@@ -80,9 +80,9 @@ public class Message extends BaseEntity implements IMessage {
         return "Message{" +
                 "id='" + getId() + '\'' +
                 ", message='" + message + '\'' +
-                ", senderId=" + senderId +
-                ", recipientId=" + recipientId +
-                ", adId=" + adId +
+                ", sender=" + sender +
+                ", recipient=" + recipient +
+                ", ad=" + ad +
                 ", viewed=" + viewed +
                 '}';
     }

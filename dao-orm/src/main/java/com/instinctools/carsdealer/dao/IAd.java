@@ -12,17 +12,17 @@ IModel getModelId();
 
 void setModelId(IModel modelId);
 
-String getEngineTypeName();
+String getEngineType();
 
-void setEngineTypeName(String engineTypeName);
+void setEngineType(String engineType);
 
 Integer getEngineVolume();
 
 void setEngineVolume(Integer engineVolume);
 
-String getGearboxName();
+String getGearbox();
 
-void setGearboxName(String gearboxName);
+void setGearbox(String gearbox);
 
 Integer getYear();
 

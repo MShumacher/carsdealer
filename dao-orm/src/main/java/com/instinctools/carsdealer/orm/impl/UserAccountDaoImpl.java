@@ -1,83 +1,82 @@
 package com.instinctools.carsdealer.orm.impl;
 
-import com.instinctools.carsdealer.dao.IModel;
-import com.instinctools.carsdealer.dao.impl.Model;
-import com.instinctools.carsdealer.orm.IModelDao;
+import com.instinctools.carsdealer.dao.IUserAccount;
+import com.instinctools.carsdealer.dao.impl.UserAccount;
+import com.instinctools.carsdealer.orm.IUserAccountDao;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
 
 @Repository
-public class ModelDaoImpl extends AbstractDaoImpl<IModel, Integer> implements IModelDao {
+public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> implements IUserAccountDao {
 
-    protected ModelDaoImpl() {
-        super(Model.class);
+    protected UserAccountDaoImpl() {
+        super(UserAccount.class);
     }
 
     @Override
-    public IModel createEntity() {
-        final Model Model = new Model();
-        return Model;
+    public IUserAccount createEntity() {
+        final UserAccount UserAccount = new UserAccount();
+        return UserAccount;
     }
 
     @Override
-    public List<IModel> selectAllFullInfo() {
+    public List<IUserAccount> selectAllFullInfo() {
         final EntityManager em = getEntityManager();
         final CriteriaBuilder cb = em.getCriteriaBuilder();
-        final CriteriaQuery<IModel> cq = cb.createQuery(IModel.class);
-        final Root<Model> from = cq.from(Model.class);
+        final CriteriaQuery<IUserAccount> cq = cb.createQuery(IUserAccount.class);
+        final Root<UserAccount> from = cq.from(UserAccount.class);
         cq.select(from);
-        final TypedQuery<IModel> q = em.createQuery(cq);
+        final TypedQuery<IUserAccount> q = em.createQuery(cq);
         return q.getResultList();
     }
 
 //    @Override
-//    public long getCount(final ModelFilter filter) {
+//    public long getCount(final UserAccountFilter filter) {
 //        final EntityManager em = getEntityManager();
 //        final CriteriaBuilder cb = em.getCriteriaBuilder();
 //        final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-//        final Root<Model> from = cq.from(Model.class);
+//        final Root<UserAccount> from = cq.from(UserAccount.class);
 //        cq.select(cb.count(from));
 //        final TypedQuery<Long> q = em.createQuery(cq);
 //        return q.getSingleResult();
 //    }
 //
 //    @Override
-//    public List<IModel> find(final ModelFilter filter) {
+//    public List<IUserAccount> find(final UserAccountFilter filter) {
 //        final EntityManager em = getEntityManager();
 //        final CriteriaBuilder cb = em.getCriteriaBuilder();
-//        final CriteriaQuery<IModel> cq = cb.createQuery(IModel.class);
-//        final Root<Model> from = cq.from(Model.class);
+//        final CriteriaQuery<IUserAccount> cq = cb.createQuery(IUserAccount.class);
+//        final Root<UserAccount> from = cq.from(UserAccount.class);
 //        cq.select(from);
 //
 //        if (filter.getSortColumn() != null) {
-//            final SingularAttribute<? super Model, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());
+//            final SingularAttribute<? super UserAccount, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());
 //            final Path<?> expression = from.get(sortProperty);
 //            cq.orderBy(new OrderImpl(expression, filter.getSortOrder()));
 //        }
 //
-//        final TypedQuery<IModel> q = em.createQuery(cq);
+//        final TypedQuery<IUserAccount> q = em.createQuery(cq);
 //        setPaging(filter, q);
 //        return q.getResultList();
 //    }
 //
-//    private SingularAttribute<? super Model, ?> toMetamodelFormat(final String sortColumn) {
+//    private SingularAttribute<? super UserAccount, ?> toMetamodelFormat(final String sortColumn) {
 //        switch (sortColumn) {
 //            case "created":
-//                return Model_.created;
+//                return UserAccount_.created;
 //            case "updated":
-//                return Model_.updated;
+//                return UserAccount_.updated;
 //            case "id":
-//                return Model_.id;
+//                return UserAccount_.id;
 //            case "name":
-//                return Model_.name;
+//                return UserAccount_.name;
 //            default:
 //                throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 //        }

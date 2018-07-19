@@ -19,13 +19,13 @@ public class Ad extends BaseEntity implements IAd {
     private IModel modelId;
 
     @Column
-    private String engineTypeName;
+    private String engineType;
 
     @Column
     private Integer engineVolume;
 
     @Column
-    private String gearboxName;
+    private String gearbox;
 
     @Column
     private Integer year;
@@ -72,13 +72,13 @@ public class Ad extends BaseEntity implements IAd {
     }
 
     @Override
-    public String getEngineTypeName() {
-        return engineTypeName;
+    public String getEngineType() {
+        return engineType;
     }
 
     @Override
-    public void setEngineTypeName(String engineTypeName) {
-        this.engineTypeName = engineTypeName;
+    public void setEngineType(String engineType) {
+        this.engineType = engineType;
     }
 
     @Override
@@ -92,13 +92,13 @@ public class Ad extends BaseEntity implements IAd {
     }
 
     @Override
-    public String getGearboxName() {
-        return gearboxName;
+    public String getGearbox() {
+        return gearbox;
     }
 
     @Override
-    public void setGearboxName(String gearboxName) {
-        this.gearboxName = gearboxName;
+    public void setGearbox(String gearbox) {
+        this.gearbox = gearbox;
     }
 
     @Override
@@ -177,9 +177,9 @@ public class Ad extends BaseEntity implements IAd {
                 "id='" + getId() + '\'' +
                 ", userAccountId=" + userAccountId +
                 ", modelId=" + modelId +
-                ", engineTypeName='" + engineTypeName + '\'' +
+                ", engineType='" + engineType + '\'' +
                 ", engineVolume=" + engineVolume +
-                ", gearboxName='" + gearboxName + '\'' +
+                ", gearbox='" + gearbox + '\'' +
                 ", year=" + year +
                 ", mileage=" + mileage +
                 ", color='" + color + '\'' +

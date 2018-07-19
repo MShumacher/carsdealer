@@ -1,8 +1,8 @@
 package com.instinctools.carsdealer.impl;
 
-import com.instinctools.carsdealer.IModelService;
-import com.instinctools.carsdealer.dao.IModel;
-import com.instinctools.carsdealer.orm.IModelDao;
+import com.instinctools.carsdealer.IUserAccountService;
+import com.instinctools.carsdealer.dao.IUserAccount;
+import com.instinctools.carsdealer.orm.IUserAccountDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,34 +12,34 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ModelServiceImpl implements IModelService {
+public class UserAccountServiceImpl implements IUserAccountService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ModelServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountServiceImpl.class);
 
     @Autowired
-    private IModelDao dao;
+    private IUserAccountDao dao;
 
     @Override
-    public IModel createEntity() {
+    public IUserAccount createEntity() {
         return dao.createEntity();
     }
 
     @Override
-    public void save(final IModel entity) {
+    public void save(final IUserAccount entity) {
         final Date modifiedOn = new Date();
         entity.setUpdated(modifiedOn);
         if (entity.getId() == null) {
             entity.setCreated(modifiedOn);
             dao.insert(entity);
-            LOGGER.info("new saved Model: {}", entity);
+            LOGGER.info("new saved UserAccount: {}", entity);
         } else {
             dao.update(entity);
         }
     }
 
     @Override
-    public IModel get(final Integer id) {
-        final IModel entity = dao.get(id);
+    public IUserAccount get(final Integer id) {
+        final IUserAccount entity = dao.get(id);
         LOGGER.debug("entityById: {}", entity);
         return entity;
     }
@@ -52,31 +52,31 @@ public class ModelServiceImpl implements IModelService {
 
     @Override
     public void deleteAll() {
-        LOGGER.info("delete all Model entities");
+        LOGGER.info("delete all UserAccount entities");
         dao.deleteAll();
     }
 
     @Override
-    public List<IModel> selectAll() {
-        final List<IModel> all = dao.selectAll();
+    public List<IUserAccount> selectAll() {
+        final List<IUserAccount> all = dao.selectAll();
         LOGGER.debug("total count in DB: {}", all.size());
         return all;
     }
 
     @Override
-    public List<IModel> selectAllFullInfo() {
-        final List<IModel> all = dao.selectAllFullInfo();
+    public List<IUserAccount> selectAllFullInfo() {
+        final List<IUserAccount> all = dao.selectAllFullInfo();
         LOGGER.debug("total count in DB: {}", all.size());
         return all;
     }
 
 //        @Override
-//        public List<IModel> find(final ModelFilter filter) {
+//        public List<IUserAccount> find(final UserAccountFilter filter) {
 //            return dao.find(filter);
 //        }
 //
 //        @Override
-//        public long getCount(final ModelFilter filter) {
+//        public long getCount(final UserAccountFilter filter) {
 //            return dao.getCount(filter);
 //        }
 

@@ -1,5 +1,5 @@
 
-CREATE TABLE model (
+CREATE TABLE Model (
 	id serial NOT NULL,
 	name character varying(50) NOT NULL UNIQUE,
 	brand character varying(50) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE model (
 
 
 
-CREATE TABLE photo_link (
+CREATE TABLE Photo_link (
 	id serial NOT NULL,
 	ad_id integer NOT NULL,
 	link character varying(300) NOT NULL UNIQUE,
@@ -21,7 +21,7 @@ CREATE TABLE photo_link (
 
 
 
-CREATE TABLE ad (
+CREATE TABLE Ad (
 	id serial NOT NULL,
 	user_account_id integer,
 	model_id integer NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE ad (
 
 
 
-CREATE TABLE message (
+CREATE TABLE Message (
 	id serial NOT NULL,
 	message character varying(500) NOT NULL,
 	sender_id integer NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE message (
 
 
 
-CREATE TABLE user_account (
+CREATE TABLE UserAccount (
 	id serial NOT NULL,
 	email character varying(100) NOT NULL UNIQUE,
 	password character varying(100) NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE user_account (
 
 
 
-CREATE TABLE parameter (
+CREATE TABLE Parameter (
 	id serial NOT NULL,
 	name character varying(300) NOT NULL UNIQUE,
 	created TIMESTAMP NOT NULL,
@@ -79,13 +79,13 @@ CREATE TABLE parameter (
 
 
 
-CREATE TABLE ad_parameter (
+CREATE TABLE Ad_2_parameter (
 	ad_id integer NOT NULL,
 	parameter_id integer NOT NULL
 );
 
 
-CREATE TABLE car_parameter (
+CREATE TABLE Car_parameter (
 	id serial NOT NULL,
 	brand character varying(50) NOT NULL UNIQUE,
 	engine_type character varying(50) NOT NULL UNIQUE,
@@ -97,20 +97,20 @@ CREATE TABLE car_parameter (
 );
 
 
-ALTER TABLE photo_link ADD CONSTRAINT photo_link_fk0 FOREIGN KEY (ad_id) REFERENCES ad(id);
+ALTER TABLE Photo_link ADD CONSTRAINT Photo_link_fk0 FOREIGN KEY (ad_id) REFERENCES Ad(id);
 
 
-ALTER TABLE ad ADD CONSTRAINT ad_fk0 FOREIGN KEY (user_account_id) REFERENCES user_account(id);
-ALTER TABLE ad ADD CONSTRAINT ad_fk1 FOREIGN KEY (model_id) REFERENCES model(id);
+ALTER TABLE Ad ADD CONSTRAINT ad_fk0 FOREIGN KEY (user_account_id) REFERENCES User_account(id);
+ALTER TABLE Ad ADD CONSTRAINT ad_fk1 FOREIGN KEY (model_id) REFERENCES Model(id);
 
-ALTER TABLE message ADD CONSTRAINT message_fk0 FOREIGN KEY (sender_id) REFERENCES user_account(id);
-ALTER TABLE message ADD CONSTRAINT message_fk1 FOREIGN KEY (recipient_id) REFERENCES user_account(id);
-ALTER TABLE message ADD CONSTRAINT message_fk2 FOREIGN KEY (ad_id) REFERENCES ad(id);
-
-
+ALTER TABLE Message ADD CONSTRAINT Message_fk0 FOREIGN KEY (sender_id) REFERENCES User_account(id);
+ALTER TABLE Message ADD CONSTRAINT Message_fk1 FOREIGN KEY (recipient_id) REFERENCES User_account(id);
+ALTER TABLE Message ADD CONSTRAINT Message_fk2 FOREIGN KEY (ad_id) REFERENCES Ad(id);
 
 
 
-ALTER TABLE ad_parameter ADD CONSTRAINT ad_parameter_fk0 FOREIGN KEY (ad_id) REFERENCES ad(id);
-ALTER TABLE ad_parameter ADD CONSTRAINT ad_parameter_fk1 FOREIGN KEY (option_id) REFERENCES parameter(id);
+
+
+ALTER TABLE Ad_parameter ADD CONSTRAINT ad_parameter_fk0 FOREIGN KEY (ad_id) REFERENCES Ad(id);
+ALTER TABLE Ad_parameter ADD CONSTRAINT ad_parameter_fk1 FOREIGN KEY (option_id) REFERENCES Parameter(id);
 

@@ -11,7 +11,9 @@ public interface IModelService {
 
         IModel get(Integer id);
 
-//        List<IModel> getAll();
+        List<IModel> selectAll();
+
+        List<IModel> selectAllFullInfo();
 
         @Transactional
         void save(IModel entity);

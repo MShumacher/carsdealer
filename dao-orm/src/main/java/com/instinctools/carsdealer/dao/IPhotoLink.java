@@ -5,9 +5,9 @@ import com.instinctools.carsdealer.dao.IBaseEntity;
 
 public interface IPhotoLink extends IBaseEntity {
 
-    IAd getAdId();
+    IAd getAd();
 
-    void setAdId(IAd adId);
+    void setAd(IAd ad);
 
     String getLink();
 

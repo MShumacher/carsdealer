@@ -12,19 +12,19 @@ import javax.persistence.ManyToOne;
 public class PhotoLink extends BaseEntity implements IPhotoLink {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Ad.class)
-    private IAd adId;
+    private IAd ad;
 
     @Column
     private String link;
 
     @Override
-    public IAd getAdId() {
-        return adId;
+    public IAd getAd() {
+        return ad;
     }
 
     @Override
-    public void setAdId(IAd adId) {
-        this.adId = adId;
+    public void setAd(IAd ad) {
+        this.ad = ad;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class PhotoLink extends BaseEntity implements IPhotoLink {
     public String toString() {
         return "PhotoLink{" +
                 "id='" + getId() + '\'' +
-                ", adId=" + adId +
+                ", ad=" + ad +
                 ", link='" + link + '\'' +
                 '}';
     }

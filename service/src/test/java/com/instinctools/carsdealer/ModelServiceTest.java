@@ -4,6 +4,10 @@ import com.instinctools.carsdealer.dao.IModel;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ModelServiceTest extends AbstractTest {
@@ -14,21 +18,15 @@ public class ModelServiceTest extends AbstractTest {
     }
 
     @Test
-    public void testCreate() {
+    public void testCreate() throws IllegalAccessException {
         final IModel entity = saveNewModel();
 
         final IModel entityFromDB = getModelService().get(entity.getId());
 
-        assertEquals(entity.getId(), entityFromDB.getId());
-        assertEquals(entity.getName(), entityFromDB.getName());
-        assertEquals(entity.getBrand(), entityFromDB.getBrand());
+        assertEqualsAllFields(entity,entityFromDB);
 //        assertEquals(entity.getCreated().getTime(),entityFromDB.getCreated().getTime());
 //        assertEquals(entity.getUpdated().getTime(),entityFromDB.getUpdated().getTime());
-        assertNotNull(entityFromDB.getId());
-        assertNotNull(entityFromDB.getName());
-        assertNotNull(entityFromDB.getBrand());
-        assertNotNull(entityFromDB.getCreated());
-        assertNotNull(entityFromDB.getUpdated());
+        assertNotNullAllFields(entityFromDB);
 
         assertEquals(entityFromDB.getCreated().getTime(),entityFromDB.getUpdated().getTime());
     }
@@ -40,17 +38,15 @@ public class ModelServiceTest extends AbstractTest {
         final IModel entityFromDB = getModelService().get(entity.getId());
         final String newName = "new-name-" + getRandomPrefix();
         entityFromDB.setName(newName);
-
-        Thread.sleep(2); // make a short delay to see a new date in 'updated' column
+        Thread.sleep(1000); // make a short delay to see a new date in 'updated' column
         getModelService().save(entityFromDB);
 
         final IModel updatedEntityFromDB = getModelService().get(entityFromDB.getId());
-        assertEquals(entityFromDB.getId(), updatedEntityFromDB.getId());
+        assertEquals(entity.getId(), updatedEntityFromDB.getId());
         assertEquals(newName, updatedEntityFromDB.getName());
-        assertEquals(entityFromDB.getBrand(), updatedEntityFromDB.getBrand());
-//        assertEquals(entityFromDB.getCreated().getTime(),updatedEntityFromDB.getCreated().getTime());
-
-        assertTrue(entityFromDB.getUpdated().after(updatedEntityFromDB.getUpdated()));
+        assertEquals(entity.getBrand(), updatedEntityFromDB.getBrand());
+        assertEqualsDates(entity.getCreated(),updatedEntityFromDB.getCreated());
+        assertTrue(updatedEntityFromDB.getUpdated().getTime() >= entity.getUpdated().getTime());
      }
 
 
@@ -61,10 +57,27 @@ public class ModelServiceTest extends AbstractTest {
         assertNull(getModelService().get(entity.getId()));
     }
 
-//    @Test
-//    public void testDeleteAll() {
-//        saveNewModel();
-//        getModelService().deleteAll();
-//        assertEquals(0, getModelService().getAll().size());
-//    }
+    @Test
+    public void testDeleteAll() {
+        saveNewModel();
+        getModelService().deleteAll();
+        assertEquals(0, getModelService().selectAll().size());
+    }
+
+    @Test
+    public void testGetAll() throws IllegalAccessException {
+        final int initialCount = getModelService().selectAll().size();
+
+        final int randomObjectsCount = getRandomObjectsCount();
+        for (int i = 0; i < randomObjectsCount; i++) {
+            saveNewModel();
+        }
+
+        final List<IModel> allEntities = getModelService().selectAll();
+
+        for (final IModel entityFromDB : allEntities) {
+            assertNotNullAllFields(entityFromDB);
+        }
+        assertEquals(randomObjectsCount + initialCount, allEntities.size());
+    }
 }

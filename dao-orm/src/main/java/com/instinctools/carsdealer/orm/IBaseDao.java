@@ -16,9 +16,9 @@ public interface IBaseDao<ENTITY, ID> {
 
     void deleteAll();
 
-//    List<ENTITY> selectAll();
+    List<ENTITY> selectAll();
 
 //    ENTITY getFullInfo(ID id);
 
-    List<ENTITY> getAllFullInfo();
+    List<ENTITY> selectAllFullInfo();
 }

@@ -6,17 +6,17 @@ public interface IMessage extends IBaseEntity {
 
     void setMessage(String message);
 
-    IUserAccount getSenderId();
+    IUserAccount getSender();
 
-    void setSenderId(IUserAccount senderId);
+    void setSender(IUserAccount sender);
 
-    IUserAccount getRecipientId();
+    IUserAccount getRecipient();
 
-    void setRecipientId(IUserAccount recipientId);
+    void setRecipient(IUserAccount recipient);
 
-    IAd getAdId();
+    IAd getAd();
 
-    void setAdId(IAd adId);
+    void setAd(IAd ad);
 
     boolean isViewed();
 
